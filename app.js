@@ -41,7 +41,7 @@ app.use(
 
 app.use("/", postController);
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 app.listen(port, () => {
   console.log("app running: " + port);
 });
