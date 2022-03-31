@@ -2,6 +2,7 @@ const express = require("express");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const Post = require("./models/post");
+const userController = require('./controllers/userController')
 const MongoDBStore = require("connect-mongodb-session")(session);
 require("dotenv").config();
 const app = express();
@@ -42,7 +43,8 @@ app.use(
   })
 );
 
-app.use("/", postController);
+app.use("/posts", postController);
+app.use('/profile', userController)
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {

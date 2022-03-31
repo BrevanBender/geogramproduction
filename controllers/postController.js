@@ -40,7 +40,7 @@ router.get('/:id', async (req, res)=>{
     try{
         const post = await Post.findById(req.params.id)
         if(!post){
-            throw new Error('this post has been adopted')
+            throw new Error('no post available here')
         }
         res.send({
             success: true,
