@@ -86,7 +86,7 @@ router.post("/signup", async (req, res) => {
 
   router.put('/:id', async (req, res)=>{
     try{
-        const post = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        const post = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.send({
             success: true,
             data: post

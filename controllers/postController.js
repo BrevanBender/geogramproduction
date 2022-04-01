@@ -23,7 +23,7 @@ router.get('/', async (req, res)=>{
 router.post('/', async (req, res)=>{
     try{
     const newpost = await Post.create(req.body)
-    
+    console.log(newpost)
     res.send({
         success: true,
         data: newpost
