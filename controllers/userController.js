@@ -72,7 +72,7 @@ router.post("/signup", async (req, res) => {
     const newUser = await User.create(req.body);
     res.send({
         success: true,
-        newUser: newUser
+        data: newUser
     })
     } catch(err) {
         res.send({
@@ -82,5 +82,22 @@ router.post("/signup", async (req, res) => {
     }
     
   });
+
+
+  router.put('/:id', async (req, res)=>{
+    try{
+        const post = await Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        res.send({
+            success: true,
+            data: post
+        })
+    }catch(err){
+        res.send({
+            success:false,
+            data: err.message
+        })
+    }
+})
+
 
 module.exports = router

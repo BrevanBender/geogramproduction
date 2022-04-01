@@ -8,7 +8,7 @@ const postSchema = new Schema({
     image: {type: String},
     likes:{type: Number, default:0},
     comments: {type: Array},
-    user: {type: Schema.Types.ObjectId, ref: 'User'}
+    user: {type: String}
 }, {timestamps: true})
 
 const Post = mongoose.model('Post', postSchema);
