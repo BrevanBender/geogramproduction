@@ -83,8 +83,30 @@ router.post("/signup", async (req, res) => {
     
   });
 
-
+  router.get('/:id', async(req, res)=>{
+      console.log(req.params.id)
+    try{
+    const user = await User.findById(req.params.id)
+    const posts = await Post.find({user: req.params.id})
+    console.log(user)
+    if(!user){
+        throw new Error('No user available here')
+    }
+    res.send({
+        success: true,
+        data: {user: user,
+                posts: posts}
+    })
+    }catch(err){
+    console.log(err.message)
+    res.send({
+        success:false,
+        data: err.message
+    })
+    }
+    })
   router.put('/:id', async (req, res)=>{
+      console.log(req.body.likes)
     try{
         const post = await User.findByIdAndUpdate(req.params.id, req.body, {new: true})
         res.send({
@@ -92,6 +114,7 @@ router.post("/signup", async (req, res) => {
             data: post
         })
     }catch(err){
+        
         res.send({
             success:false,
             data: err.message

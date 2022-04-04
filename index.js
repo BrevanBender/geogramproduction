@@ -2,6 +2,7 @@ const express = require("express");
 const methodOverride = require("method-override");
 const session = require("express-session");
 const Post = require("./models/post");
+
 const userController = require('./controllers/userController')
 const MongoDBStore = require("connect-mongodb-session")(session);
 require("dotenv").config();
@@ -24,7 +25,7 @@ const store = new MongoDBStore({
 require("./db-utils/connect");
 
 const postController = require("./controllers/postController");
-
+const locationController = require('./controllers/locationController')
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
@@ -45,6 +46,7 @@ app.use(
 
 app.use("/posts", postController);
 app.use('/profile', userController)
+app.use('/location', locationController)
 
 const port = process.env.PORT || 3001;
 app.listen(port, () => {
